@@ -10,41 +10,43 @@
 
 char **split(char *buffer, char *delim)
 {
-	char *str = malloc(strlen(buffer) + 1);
-	char **arr;
-	char *token;
+	char *tmp = NULL;
+	char **arr = NULL;
+	char *token = NULL;
 	int word_count = 0;
 	int i = 0;
 
-	strcpy(str, buffer);
-	token = strtok(str, delim);
+	if (buffer == NULL)
+		return (NULL);
+	tmp = _strdup(buffer);
+	token = strtok(tmp, delim);
+	if (token == NULL)
+	{
+		free(tmp), tmp = NULL;
+		free(buffer), buffer = NULL;
+		return (NULL);
+	}
 	while (token)
 	{
 		word_count++;
 		token = strtok(NULL, delim);
 	}
+	free(tmp), tmp = NULL;
 	arr = malloc((word_count + 1) * sizeof(char *));
 	if (arr == NULL)
 	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
+		free(buffer), buffer = NULL;
+		return (NULL);
 	}
-	strcpy(str, buffer);
-	token = strtok(str, delim);
+	token = strtok(buffer, delim);
 	while (token)
 	{
-		arr[i] = malloc(strlen(token) + 1);
-		if (arr[i] == NULL)
-		{
-			perror("malloc");
-			exit(EXIT_FAILURE);
-		}
-		strcpy(arr[i], token);
+		arr[i] = _strdup(token);
 		i++;
 		token = strtok(NULL, delim);
 	}
-	arr[word_count] = NULL;
-	free(str);
+	arr[i] = NULL;
+	free(buffer), buffer = NULL;
 
 	return (arr);
 }
