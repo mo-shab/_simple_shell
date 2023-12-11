@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 		if (is_built_in(array[0]))
 		{
-			handle_built_in(array, argv, status, index);
+			handle_built_in(array, argv, &status, index);
 		}
 		else
 			status = _exect(array, argv, index);

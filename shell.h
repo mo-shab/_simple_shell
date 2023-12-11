@@ -29,10 +29,15 @@ int _strcmp(char *s1, char *s2);
 char *_strdup(const char *str);
 char *_strcpy(char *dest, char *src);
 
-void handle_built_in(char **array, char **argv, int status, int index);
+void handle_built_in(char **array, char **argv, int *status, int index);
 int is_built_in(char *array);
-void print_env(char **array, int status);
-void exit_shell(char **array, int status);
+void print_env(char **array, int *status);
+void exit_shell(char **array, char **argv, int *status, int index);
+
+int is_pos_n(char *str);
+int _atoi(char *str);
+
+void exec_cd(char **argv);
 #endif
 
 

@@ -36,10 +36,9 @@ void print_error(char *name, char *cmd, int i)
 	free(index);
 }
 
-void print_env(char **array, int status)
+void print_env(char **array, int *status)
 {
 	int i;
-	(void) status;
 
 	for (i = 0; environ[i]; i++)
 	{
@@ -47,10 +46,33 @@ void print_env(char **array, int status)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	_free_array(array);
+	status = 0;
 }
 
-void exit_shell(char **array, int status)
+void exit_shell(char **array, char **argv, int *status, int index)
 {
+	int ex_val;
+	char *idx, msg[] = ": exit: Illegal number: ";
+
+	if (array[1] != NULL)
+	{
+		if (is_pos_n(array[1]))
+			ex_val = _atoi(array[1]);
+		else
+		{
+			idx = _itoa(index);
+			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
+			write(STDERR_FILENO, ": ", 2);
+			write(STDERR_FILENO, idx, _strlen(idx));
+			write(STDERR_FILENO, msg, _strlen(msg));
+			write(STDERR_FILENO, array[1], _strlen(array[1]));
+			write(STDERR_FILENO, "\n", 1);
+			free(idx);
+			_free_array(array);
+			(*status) = 2;
+			return;
+		}
+	}
 	_free_array(array);
-	exit(status);
+	exit(ex_val);
 }

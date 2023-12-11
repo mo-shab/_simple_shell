@@ -3,7 +3,7 @@
 int is_built_in(char *array)
 {
 	char *built_ins[] = {
-		"exit", "env", "setenv", "cd", NULL
+		"exit", "env", "setenv", "cd", "setenv", NULL
 		};
 	int i;
 
@@ -16,13 +16,14 @@ int is_built_in(char *array)
 	return (0);
 }
 
-void handle_built_in(char **array, char **argv, int status, int index)
+void handle_built_in(char **array, char **argv, int *status, int index)
 {
-	(void) argv;
-	(void) index;
+
 
 	if (_strcmp(array[0], "exit") == 0)
-		exit_shell(array, status);
+		exit_shell(array, argv, status, index);
 	else if (_strcmp(array[0], "env") == 0)
 		print_env(array, status);
+	else if (_strcmp(array[0], "cd") == 0)
+		exec_cd(array);
 }
