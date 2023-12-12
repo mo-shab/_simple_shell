@@ -54,7 +54,7 @@ void print_env(char **array, int *status)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	_free_array(array);
-	status = 0;
+	*status = 0;
 }
 /**
  * exit_shell - Exits the shell with a given exit value.
