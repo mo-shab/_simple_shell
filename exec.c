@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * _exect - Executes a command with arguments.
+ * @array: Array of command and arguments.
+ * @argv: Array of arguments passed to the program.
+ * @index: Index of the current command in the command line.
+ * Return: The exit status of the executed command.
+ */
 int _exect(char **array, char **argv, int index)
 {
 	char *fcmd;
@@ -16,7 +22,7 @@ int _exect(char **array, char **argv, int index)
 	child_pid = fork();
 	if (child_pid == 0)
 	{
-		if(execve(fcmd, array, environ) == -1)
+		if (execve(fcmd, array, environ) == -1)
 		{
 			free(fcmd), fcmd = NULL;
 			_free_array(array);
@@ -28,6 +34,5 @@ int _exect(char **array, char **argv, int index)
 		_free_array(array);
 		free(fcmd), fcmd = NULL;
 	}
-
 	return (WEXITSTATUS(status));
 }
