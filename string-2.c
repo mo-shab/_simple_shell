@@ -1,5 +1,10 @@
 #include "shell.h"
-
+/**
+ * _strdup - Duplicates a string.
+ * @str: The string to be duplicated.
+ *
+ * Return: a duplication of str or NULL
+ */
 char *_strdup(const char *str)
 {
 	char *p;
