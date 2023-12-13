@@ -51,7 +51,7 @@ void print_env(char **array, int *status)
 
 void exit_shell(char **array, char **argv, int *status, int index)
 {
-	int ex_val;
+	int ex_val = *status;
 	char *idx, msg[] = ": exit: Illegal number: ";
 
 	if (array[1] != NULL)
