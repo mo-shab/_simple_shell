@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * _getpath - Searches for the full path of a command in the PATH directories.
+ * @array: The command or path to be searched.
+ * Return: full path of the command or NULL.
+ */
 char *_getpath(char *array)
 {
 	char *path_envr, *cmd, *dir;

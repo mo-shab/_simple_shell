@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * _itoa - Converts an integer to a string.
+ * @n: The integer to be converted.
+ * Return: A dynamically allocated string containing the converted integer.
+ */
 char *_itoa(int n)
 {
 	char buffer[30];
@@ -20,13 +24,15 @@ char *_itoa(int n)
 
 	return (_strdup(buffer));
 }
-
-
-
+/**
+ * reverse_string - Reverses a string in-place.
+ * @str: The string to be reversed.
+ * @len: The length of the string.
+ */
 void reverse_string(char *str, int len)
 {
 	char temp;
-	int s = 0, e = len -1;
+	int s = 0, e = len - 1;
 
 	while (s < e)
 	{

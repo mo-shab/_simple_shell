@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * is_built_in - Checks if a given command is a built-in command.
+ * @array: The command to be checked.
+ * Return: 1 if the command is a built-in, 0 otherwise.
+ */
 int is_built_in(char *array)
 {
 	char *built_ins[] = {
@@ -15,7 +19,13 @@ int is_built_in(char *array)
 
 	return (0);
 }
-
+/**
+ * handle_built_in - Handles execution of built-in commands.
+ * @array: The array of arguments passed to the program.
+ * @argv: The array of arguments passed to the program.
+ * @status: The exit status.
+ * @index: The index associated with the command.
+ */
 void handle_built_in(char **array, char **argv, int *status, int index)
 {
 

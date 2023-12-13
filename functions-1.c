@@ -19,8 +19,12 @@ void _free_array(char **array)
 	}
 	free(array);
 }
-
-
+/**
+ * print_error - Prints an error message to STDERR.
+ * @name: The name of the program.
+ * @cmd: The command that caused the error.
+ * @i: The index associated with the error.
+ */
 void print_error(char *name, char *cmd, int i)
 {
 	char *index;
@@ -35,7 +39,11 @@ void print_error(char *name, char *cmd, int i)
 	write(STDERR_FILENO, msg, _strlen(msg));
 	free(index);
 }
-
+/**
+ * print_env - Prints the current environment variables to STDOUT.
+ * @array: The array of arguments passed to the program.
+ * @status: The exit status.
+ */
 void print_env(char **array, int *status)
 {
 	int i;
@@ -46,9 +54,15 @@ void print_env(char **array, int *status)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	_free_array(array);
-	status = 0;
+	*status = 0;
 }
-
+/**
+ * exit_shell - Exits the shell with a given exit value.
+ * @array: The array of arguments passed to the program.
+ * @argv: The array of arguments passed to the program.
+ * @status: The exit status.
+ * @index: The index associated with the exit command.
+ */
 void exit_shell(char **array, char **argv, int *status, int index)
 {
 	int ex_val = *status;
